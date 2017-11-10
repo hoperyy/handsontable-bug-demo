@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+
+
+
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
+    <title>mydemo</title>
+    <script src="./dist/handsontable.full.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="./dist/handsontable.full.min.css">
+    <style>
+    body {
+        margin: 0;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="example1" class="hot handsontable htColumnHeaders"></div>  
+</body>
+
+</html>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var
+            container = document.getElementById('example1'),
+            hot;
+
+        hot = new Handsontable(container, {
+            data: Handsontable.helper.createSpreadsheetData(1000, 1000),
+            renderAllRows: true,
+            rowHeaders: true,
+            colHeaders: true
+        });
+    });
+</script>
