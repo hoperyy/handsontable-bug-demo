@@ -1,117 +1,48 @@
 <!DOCTYPE html>
-<html slick-uniqueid="3">
+<html>
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="description" content="Test your JavaScript, CSS, HTML or CoffeeScript online with JSFiddle code editor.">
-  <meta name="keywords" content="online javascript editor, testing javascript online, online ide, online code editor, html, css, coffeescript, scss online editor">
-  <meta name="author" content="JSFiddle">
   <meta name="copyright" content="share alike">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-touch-fullscreen" content="yes">
-  <script type="text/javascript" src="./dist/_dist-editor.js"></script>
-  <link rel="stylesheet" type="text/css" href="./dist/_dist-editor.css">
   <script type="text/javascript">
-
-    var fiddleOptions = {
-    };
-    var codemirrorpath = "/codemirror/";
-    var preload_resources;
-
-    window.addEvent('domready',
-      function () {
-
-        mooshell = new MooShellActions({
-        });
-        Layout.render();
-      });
-
+    
+  document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("handler_vertical").addEventListener('touchstart', function () { });
+  });
   </script>
-
-
-  <title>Handsontable example - JSFiddle</title>
+  <title>index</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0
+    }
+  </style>
 </head>
 
 <body>
-  <form method="post" id="show-result">
 
-    <div id="content" style="opacity: 1; height: 419px;">
-      <fieldset class="column left">
-        <div class="window top" id="panel_html" data-panel_type="html"></div>
-        <div class="handler handler_horizontal" style="top: 106px;"></div>
-        <div class="window bottom" id="panel_js" data-panel_type="javascript">
+  <fieldset>
+    <div style="z-index: 90; position: absolute; top: 8px;"></div>
+  </fieldset>
 
-        </div>
-      </fieldset>
-      <div class="handler" id="handler_vertical" style="left: 516px;"></div>
-      <fieldset class="column right">
-        <div class="window top" id="panel_css" data-panel_type="css">
-          <a class="windowLabel">
-            <span class="label"></span>
-          </a>
-          <div class="CodeMirror cm-s-default CodeMirror-wrap">
-            <div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 39px;">
-              <textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"
-                tabindex="0"></textarea>
-            </div>
-            <div class="CodeMirror-vscrollbar" cm-not-content="true" style="display: block; bottom: 0px; width: 18px; pointer-events: none;">
-              <div style="min-width: 1px; height: 179px;"></div>
-            </div>
-            <div class="CodeMirror-hscrollbar" cm-not-content="true" style="height: 18px; pointer-events: none;">
-              <div style="height: 100%; min-height: 1px; width: 0px;"></div>
-            </div>
-            <div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div>
-            <div class="CodeMirror-gutter-filler" cm-not-content="true"></div>
-            <div class="CodeMirror-scroll" tabindex="-1">
-              <div class="CodeMirror-sizer" style="margin-left: 35px; margin-bottom: 0px; border-right-width: 30px; min-height: 179px; padding-right: 0px; padding-bottom: 0px;">
-                <div style="position: relative; top: 0px;">
-                  <div class="CodeMirror-lines">
-                    <div style="position: relative; outline: none;">
+  <div id="handler_vertical" style="z-index: 200; width: 8px; height: 100%; position: absolute; top: 0px; left: 1203px;"></div>
 
-                      <div style="position: relative; z-index: 1;"></div>
-                      <div class="CodeMirror-cursors">
-                        <div class="CodeMirror-cursor" style="left: 4px; top: 0px; height: 19px;">&nbsp;</div>
-                      </div>
-                      <div class="CodeMirror-code" style="">
-                        <div style="position: relative;">
-                          <div class="CodeMirror-gutter-wrapper" style="left: -35px;">
-                            <div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">1</div>
-                          </div>
-                          <pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre>
-                        </div>
-                        <div style="position: relative;">
-                          <div class="CodeMirror-gutter-wrapper" style="left: -35px;">
-                            <div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">2</div>
-                          </div>
-                          <pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-tag">aa</span></span></pre>
-                        </div>
-                        
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div style="position: absolute; height: 30px; width: 1px; border-bottom: 0px solid transparent; top: 179px;"></div>
-              <div class="CodeMirror-gutters" style="height: 209px;">
-                <div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 34px;"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="handler handler_horizontal" style="top: 106px;"></div>
-        <div id="result" class="window bottom">
-          <iframe name="result" frameborder="0" src="./dist/handsontable.html"></iframe>
-        </div>
+  <fieldset style="display: block; height: 100%;">
 
-      </fieldset>
+    <div style="overflow: scroll!important;margin-bottom: -30px;padding-bottom: 30px;position: relative;">
+      <div style="position: absolute; height: 30px; width: 1px; top: 179px;"></div>
     </div>
-  </form>
 
+    <div style="position: relative;"></div>
 
-  <span class="CodeMirror-error-tooltip"></span>
+    <div style="z-index: 90; width: 100%; height: 8px; position: absolute;"></div>
+    <div style="position: absolute; left:0; right: 0; bottom: 0; top: 0;">
+      <iframe frameborder="0" src="./dist/handsontable.html" style="width:100%;height:100%;"></iframe>
+    </div>
 
+  </fieldset>
 
-  <span class="CodeMirror-error-tooltip"></span>
 </body>
-
 </html>
