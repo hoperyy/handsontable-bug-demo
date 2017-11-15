@@ -2,17 +2,17 @@
 <html>
 
 <head>
+  <title>index</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="copyright" content="share alike">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-touch-fullscreen" content="yes">
   <script type="text/javascript">
-    
   document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("handler_vertical").addEventListener('touchstart', function () { });
   });
   </script>
-  <title>index</title>
+  
   <style>
     html, body {
       margin: 0;
@@ -22,27 +22,20 @@
 </head>
 
 <body>
+  <div id="handler_vertical" style="z-index: 200; width: 8px; height: 100%; position: absolute;"></div>
+  <div style="z-index: 1; position: absolute;"></div>
+  <fieldset></fieldset>
+  <div style="overflow:scroll;padding-bottom: 1px;position: relative;">
+    <div style="position: absolute; height: 1px; width: 1px; top: 1px;"></div>
+  </div>
+  <div style="position: relative;"></div>
+  <div style="z-index: 1; width: 100%; height: 1px; position: absolute;"></div>
 
-  <fieldset>
-    <div style="z-index: 90; position: absolute; top: 8px;"></div>
-  </fieldset>
 
-  <div id="handler_vertical" style="z-index: 200; width: 8px; height: 100%; position: absolute; top: 0px; left: 1203px;"></div>
+  <div style="position: absolute; left:0; right: 0; bottom: 0; top: 0;">
+    <iframe frameborder="0" src="./dist/handsontable.html" style="width:100%;height:100%;"></iframe>
+  </div>
 
-  <fieldset style="display: block; height: 100%;">
-
-    <div style="overflow: scroll;padding-bottom: 30px;position: relative;">
-      <div style="position: absolute; height: 30px; width: 1px; top: 179px;"></div>
-    </div>
-
-    <div style="position: relative;"></div>
-
-    <div style="z-index: 90; width: 100%; height: 8px; position: absolute;"></div>
-    <div style="position: absolute; left:0; right: 0; bottom: 0; top: 0;">
-      <iframe frameborder="0" src="./dist/handsontable.html" style="width:100%;height:100%;"></iframe>
-    </div>
-
-  </fieldset>
 
 </body>
 </html>
