@@ -57186,29 +57186,11 @@ Layout = {
         document.id("result");
         this.resize(),
         this.resize.bind(this).delay(20),
-        Browser.Engine.trident4 || this.createDragInstances(),
-        this.createErrorTooltips(),
-        this.fireEvent("ready");
-        new Dropdown;
-        if (this.progressbar = new Mprogress({
-            template: 1,
-            parent: "#progressbar"
-        }), this.applyEditorOptions(), sessionId = Cookie.read("session_id"), null === sessionId && (Cookie.write("session_id", "a" +
-        function(e) {
-            return Math.round(Math.pow(36, e + 1) - Math.random() * Math.pow(36, e)).toString(36).slice(1)
-        } (20) + "z"), sessionId = Cookie.read("session_id")), fiddleOptions.slug) {
-            var e = function(e, t) {
-                var n = new XMLHttpRequest;
-                return "withCredentials" in n || (n = new XDomainRequest),
-                n.open("GET", e),
-                n.setRequestHeader("X-Hello", "true"),
-                n.send(),
-                n
-            },
-            t = "//counter.jsfiddle.net/" + fiddleOptions.slug + ".json?k=" + sessionId,
-            n = document.location;
-            n.href.indexOf("//jsfiddle.net") >= 0 ? e(t) : "#debug" === n.hash && e(t)
-        }
+        this.createDragInstances();
+        // this.createErrorTooltips(),
+        // console.log('~~~~~ before ready');
+        // this.fireEvent("ready");
+        
     },
     getEditorOptions: function() {
         var e = window.localStorage.JSFIDDLE_editor_options;
@@ -57334,8 +57316,7 @@ Layout = {
             this.windows.each(function(t, n) {
                 var i = t.getStyle("height");
                 e.h[n] = i.contains("%") ? i: null
-            }),
-            Cookie.write("window_sizes", JSON.encode(e))
+            });
         }.bind(this),
         t = function(t) {
             var n = t.getParent().getElements(".window"),
@@ -57377,10 +57358,7 @@ Layout = {
                 }.bind(this)
             })
         },
-        this),
-        window.addEvent("unload", e),
-        window.addEvent("resize", e),
-        this.setWindowSizes()
+        this);
     },
     setWindowSizes: function(e) {
         void 0 === e && (e = Cookie.read("window_sizes")) && (e = JSON.decode(e)),
@@ -57992,45 +57970,7 @@ update_resource_order = function() {
     resources = e,
     update_resource_input()
 },
-submit_external_resource = function() {
-    var e = $("external_resource").value;
-    e && e != $("external_resource").retrieve("default_value") && $("external_resource").value.length > 7 && new Request.JSON({
-        url: add_external_resource_url,
-        method: "post",
-        data: {
-            url: e
-        },
-        onSuccess: function(e) {
-            if (update_resource_input(e.id)) {
-                var t = new Element("li", {
-                    id: "external_resource_" + e.id
-                }).inject($("external_resources_list"));
-                new Element("a", {
-                    text: e.filename,
-                    title: e.url,
-                    class: "filename",
-                    href: e.url,
-                    target: "_blank"
-                }).inject(t),
-                new Element("a", {
-                    html: '<i class="bts bt-minus-circle"></i>',
-                    rel: e.id,
-                    class: "remove",
-                    events: {
-                        click: function(e) {
-                            e.stop(),
-                            remove_resource(this.get("rel").toInt())
-                        }
-                    }
-                }).inject(t),
-                sortableResources.addItems(t)
-            }
-            var n = $("external_resource");
-            n.value = "",
-            n.removeClass("warning")
-        }
-    }).send()
-},
+
 change_default_input_value = function(e) {
     e && !this.value ? (this.set("value", this.retrieve("default_value")), this.addClass("default")) : e || this.value != this.retrieve("default_value") || (this.set("value", ""), this.removeClass("default"))
 },
@@ -58289,60 +58229,11 @@ var MooShellEditor = new Class({
         this.options.codeMirrorOptions = window.cmOptions
     }
 });
-MooShellEditor.JS = new Class({
-    Extends: MooShellEditor,
-    options: {
-        name: "js",
-        language: "javascript",
-        useCodeMirror: !0,
-        codeMirrorOptions: {
-            autofocus: !0,
-            mode: "text/javascript",
-            autoCloseBrackets: !0
-        },
-        syntaxHighlighting: ["javascript", "javascript 1.7", "jsx"],
-        disallowed: {
-            "<script": "Input plain JavaScript code, no HTML.",
-            "document.write": "<code>document.write</code> is disallowed in JSFiddle environment and might break your fiddle."
-        }
-    },
-    initialize: function(e, t) {
-        this.setOptions(t),
-        this.parent(e, this.options)
-    }
-}),
+
 MooShellEditor.CSS = new Class({
     Extends: MooShellEditor,
-    options: {
-        name: "css",
-        language: "css",
-        useCodeMirror: !0,
-        codeMirrorOptions: {
-            mode: "css",
-            autoCloseBrackets: !0
-        },
-        syntaxHighlighting: ["css", "scss"]
-    },
+    
     initialize: function(e, t) {
-        this.setOptions(t),
-        this.parent(e, this.options)
-    }
-}),
-MooShellEditor.HTML = new Class({
-    Extends: MooShellEditor,
-    options: {
-        name: "html",
-        language: "html",
-        useCodeMirror: !0,
-        codeMirrorOptions: {
-            mode: "text/html",
-            autoCloseBrackets: !0,
-            htmlMode: !0
-        },
-        syntaxHighlighting: ["html"],
-    },
-    initialize: function(e, t) {
-        this.setOptions(t),
         this.parent(e, this.options)
     }
 });

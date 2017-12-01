@@ -21,23 +21,23 @@
     window.addEvent('domready', function () {
       $extend(Layout, new Events());
       mooshell = new MooShellActions({});
-
+      
       new MooShellEditor.CSS(document.id('id_code_css'));
       Layout.render();
     });
   </script>
 
 
-  <title>absolute</title>
+  <title>fixed</title>
 </head>
 
 <body>
 
   <form id="show-result">
-
+    
     <div id="content" style="height: 513px; opacity: 1;">
 
-      <fieldset class="column top">
+      <fieldset class="column left">
         <div class="window"></div>
         <div class="handler_horizontal"></div>
       </fieldset>
@@ -48,15 +48,17 @@
         <div class="window top">
           <textarea id="id_code_css">
             &lt;/style&gt;&lt;!-- Ugly Hack due to jsFiddle issue --&gt;
+
+&lt;script src="https://docs.handsontable.com/pro/1.5.1/bower_components/handsontable-pro/dist/handsontable.full.min.js"&gt;&lt;/script&gt;
           </textarea>
           <a class="windowLabel">
             <span class="label">CSS</span>
           </a>
 
         </div>
-        <div class="handler_horizontal" style="top: 129px;"></div>
-        <!-- <div id="result" class="window bottom" style="position: fixed; left: 10px; top: 0; z-index: 4;"> -->
-          <div id="result" class="window" style="position: absolute; left: 10px; top: 0; bottom: 60px; z-index: 4;">
+        <div class="handler_horizontal"></div>
+        <div id="result" class="window" style="position: fixed; left: 10px; top: 0; bottom: 20px; z-index: 4;">
+        <!-- <div id="result" class="window bottom" style="position: absolute; left: 10px; top: 0; z-index: 2;"> -->
           <iframe frameborder="0" src="./dist/index.html"></iframe>
         </div>
       </fieldset>
