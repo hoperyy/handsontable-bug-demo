@@ -57977,256 +57977,27 @@ change_default_input_value = function(e) {
 warn = function() {
     validateGithub.call(this) && validateSSL.call(this) ? this.removeClass("warning") : this.addClass("warning")
 };
-window.addEvent("domready",
-function() {
-    var e = document.id("add_external_resource");
-    if (e) {
-        var t = $("external_resource");
-        t.store("default_value", default_text),
-        update_resource_input(),
-        t.addEvents({
-            change: warn,
-            keydown: function(e) {
-                "enter" === e.key && this.fireEvent("submit", e)
-            },
-            keyup: warn,
-            submit: prepareToSubmit
-        }),
-        sortableResources = new Sortables(document.id("external_resources_list"), {
-            clone: !0,
-            opacity: .5,
-            revert: !0,
-            onComplete: update_resource_order
-        }),
-        e.addEvent("click", prepareToSubmit),
-        preload_resources && preload_resources.each(function(e) {
-            $("external_resource").set("value", e),
-            submit_external_resource()
-        })
-    }
-});
-var disallowedPlatforms = ["ios", "android", "ipod"];
+
 window.defaultCmOptions = {
     tabSize: 2,
     indentUnit: 2,
     matchBrackets: !0,
     lineNumbers: !0,
-    lineWrapping: !0,
-    keyMap: "default",
-    autoCloseTags: !0,
-    indentWithTabs: !1,
-    smartIndent: !1,
-    viewportMargin: 1 / 0
 },
-window.cmOptions = Object.merge(window.defaultCmOptions, window.userCmOptions);
+window.cmOptions = window.defaultCmOptions;
 var MooShellEditor = new Class({
-    Implements: [Options, Events],
-    parameter: "Editor",
     options: {
-        useCodeMirror: !0,
         codeMirrorOptions: window.cmOptions,
-        syntaxHighlighting: []
-    },
-    window_names: {
-        javascript: "JavaScript",
-        html: "HTML",
-        css: "CSS",
-        scss: "SCSS",
-        coffeescript: "CoffeeScript",
-        "javascript 1.7": "JavaScript 1.7"
     },
     initialize: function(e, t) {
-        if (this.validationTooltip, this.editorModified = !1, !e) return ! 1;
-        this.element = $(e),
-        this.options.syntaxHighlighting.contains(t.language) || this.forceDefaultCodeMirrorOptions(),
-        this.setOptions(t);
-        var n = disallowedPlatforms.contains(Browser.Platform.name);
-        if (this.options.useCodeMirror && !n) {
-            this.element.hide(),
-            !this.options.codeMirrorOptions.stylesheet && this.options.stylesheet && (this.options.codeMirrorOptions.stylesheet = this.options.stylesheet.map(function(e) {
-                return mediapath + e
-            })),
-            this.options.codeMirrorOptions.path || (this.options.codeMirrorOptions.path = codemirrorpath + "js/"),
-            this.options.codeMirrorOptions.content || (this.options.codeMirrorOptions.content = this.element.get("value"));
-            var i = this.element.getParent(),
-            t = {
-                value: this.element.value
-            };
-            t = Object.append(t, this.options.codeMirrorOptions),
-            this.editor = CodeMirror(i, t),
-            emmetCodeMirror(this.editor),
-            this.options.codeMirrorOptions.initCallback || this.options.codeMirrorOptions.autofocus && (Layout.current_editor = this.options.name);
-            this.editor.getLineHandle(this.editor.getCursor().line);
-            this.setEditorEvents({
-                focus: function() {
-                    Layout.current_editor = this.options.name
-                },
-                cursorActivity: function() {},
-                blur: function() {},
-                change: function(e) {
-                    this.validateEditorInput.call(this, i),
-                    window.editorsModified = !0,
-                    this.editorModified && this.draftStore(fiddleOptions.example_id),
-                    this.editorModified = !0
-                }.bind(this)
-            }),
-            CodeMirror.keyMap.
-        default["Ctrl-Enter"] = function() {
-                return ! 1
-            },
-            delete CodeMirror.keyMap.
-        default["Cmd-L"]
-        }
-        mooshell.addEvents({
-            run:
-            this.b64decode.bind(this)
-        }),
-        Layout.registerEditor(this),
-        this.setLabelName(this.options.language || this.options.name),
-        this.draftDiff(fiddleOptions.example_id)
-    },
-    validateEditorInput: function(e) {
-        var t = this.getCode(),
-        n = [];
-        this.validationTooltip && this.validationTooltip.destroy(),
-        this.validationTooltip = Element("ul", {
-            class: "warningTooltip"
-        }),
-        this.options.disallowed && Object.each(this.options.disallowed,
-        function(e, i) {
-            t.test(i, "i") && n.push("<li>" + e + "</li>")
-        }),
-        this.validationTooltip = this.validationTooltip.inject(e),
-        this.validationTooltip.set({
-            html: n.join("")
-        })
-    },
-    getEditor: function() {
-        return this.editor || this.element
-    },
-    getWindow: function() {
-        return this.window || (this.window = this.element.getParent(".window")),
-        this.window
-    },
-    getLabel: function() {
-        return this.getWindow().getElement(".windowLabel .label")
-    },
-    b64decode: function() {
-        this.element.set("value", this.before_decode)
-    },
-    draftDiff: function(e) {
-        var t = document.getElement(".draftTriggerCont"),
-        n = this.draftRead(e);
-        if (n && n[this.options.name] && n[this.options.name].code) {
-            t.show();
-            var i = difflib.stringAsLines(this.getCode()),
-            r = difflib.stringAsLines(n[this.options.name].code),
-            o = new difflib.SequenceMatcher(i, r).get_opcodes(),
-            s = diffview.buildView({
-                baseTextLines: i,
-                newTextLines: r,
-                opcodes: o,
-                viewType: 1
-            });
-            diffEl = document.id("diff-" + this.options.name),
-            diffEl.adopt(s)
-        }
-    },
-    draftDifferent: function(e) {
-        return this.draftRead(e)[this.options.name].code !== this.getCode()
-    },
-    draftApply: function(e) {
-        var t = document.location.pathname.split("/");
-        if ( - 1 === ["gh", "api", "gist", "get", "post"].indexOf(t[1]) && t.length >= 2) {
-            var n = this.draftRead(e);
-            n && n[this.options.name] && this.draftDifferent(e) && this.setCode(n[this.options.name].code)
-        }
-    },
-    draftStore: function(e) {
-        Layout.editors.each(function(t, n) {
-            Layout.localDraft[n] = {
-                code: t.getCode()
-            },
-            localStorage.setItem("draft[" + e + "]", this.draftEncode(Layout.localDraft))
-        },
-        this)
-    },
-    draftRead: function(e) {
-        var t = localStorage.getItem("draft[" + e + "]");
-        if (t) return this.draftDecode(t)
-    },
-    draftRemove: function(e) {
-        localStorage.removeItem("draft[" + e + "]")
-    },
-    draftEncode: function(e) {
-        return Base64.encode(JSON.encode(e))
-    },
-    draftDecode: function(e) {
-        return JSON.decode(Base64.decode(e))
-    },
-    setCode: function(e) {
-        this.editor ? this.editor.setValue(e) : this.element.set("value", e)
-    },
-    getCode: function() {
-        return this.editor ? this.editor.getValue() : this.element.get("value")
-    },
-    updateFromMirror: function() {
-        this.before_decode = this.getCode(),
-        this.element.set("value", Base64.encode(this.before_decode))
-    },
-    updateCode: function() {
-        this.element.set("value", this.getCode())
-    },
-    clean: function() {
-        this.element.set("value", ""),
-        this.cleanEditor()
-    },
-    cleanEditor: function() {
-        this.editor && this.editor.setCode("")
-    },
-    hide: function() {
-        this.getWindow().hide()
-    },
-    show: function() {
-        this.getWindow().show()
-    },
-    setEditorOptions: function(e) {
-        Object.each(e,
-        function(e, t) {
-            this.editor.setOption(t, e.bind(this))
-        },
-        this)
-    },
-    setEditorEvents: function(e) {
-        Object.each(e,
-        function(e, t) {
-            this.editor.on(t, e.bind(this))
-        },
-        this)
-    },
-    setLanguage: function(e) {
-        this.setLabelName(e)
-    },
-    setLabelName: function(e) {
-        this.getLabel().set("text", this.window_names[e] || e)
-    },
-    setStyle: function(e, t) {
-        return this.editor ? $(this.editor.frame).setStyle(e, t) : this.element.setStyle(e, t)
-    },
-    setStyles: function(e) {
-        return this.editor ? $(this.editor.frame).setStyles(e) : this.element.setStyles(e)
-    },
-    setWidth: function(e) {
-        this.getWindow().setStyle("width", e)
-    },
-    setHeight: function(e) {
-        this.getWindow().setStyle("height", e)
-    },
-    getPosition: function() {
-        return this.editor ? $(this.editor.frame).getPosition() : this.element.getPosition()
-    },
-    forceDefaultCodeMirrorOptions: function() {
-        this.options.codeMirrorOptions = window.cmOptions
+        this.element = $(e);
+        
+        var i = this.element.getParent(),
+        t = {
+            value: this.element.value
+        };
+        t = Object.append(t, this.options.codeMirrorOptions),
+        CodeMirror(i, t);
     }
 });
 

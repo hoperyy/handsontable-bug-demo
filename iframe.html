@@ -11,12 +11,8 @@
   <link rel="stylesheet" type="text/css" href="./dist/_dist-editor.css">
 
   <script type="text/javascript">
-    var fiddleOptions = {
-    };
-    var csspath = "/css/",
-      jspath = "/js/",
-      codemirrorpath = "/codemirror/",
-      mooshell;
+
+    var mooshell;
 
     window.addEvent('domready', function () {
       $extend(Layout, new Events());
@@ -49,10 +45,7 @@
           <textarea id="id_code_css">
             &lt;/style&gt;&lt;!-- Ugly Hack due to jsFiddle issue --&gt;
           </textarea>
-          <a class="windowLabel">
-            <span class="label">CSS</span>
-          </a>
-
+         
         </div>
         <div class="handler_horizontal" style="top: 129px;"></div>
         <!-- <div id="result" class="window bottom" style="position: fixed; left: 10px; top: 0; z-index: 4;"> -->
