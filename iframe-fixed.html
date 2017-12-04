@@ -16,8 +16,6 @@
 
     window.addEvent('domready', function () {
       $extend(Layout, new Events());
-      mooshell = new MooShellActions({});
-      
       new MooShellEditor.CSS(document.id('id_code_css'));
       Layout.render();
     });
@@ -31,7 +29,7 @@
 
   <form id="show-result">
     
-    <div id="content" style="height: 513px; opacity: 1;">
+    <div id="content">
 
       <fieldset class="column left">
         <div class="window"></div>
@@ -50,7 +48,7 @@
           
         </div>
         <div class="handler_horizontal"></div>
-        <div id="result" class="window" style="position: fixed; left: 20px; top: 20px; bottom: 20px; z-index: 4;">
+        <div id="result" class="window" style="position: fixed; left: 40px; top: 40px; bottom: 40px; z-index: 4;">
         <!-- <div id="result" class="window bottom" style="position: absolute; left: 10px; top: 0; z-index: 2;"> -->
           <iframe frameborder="0" src="./dist/index.html"></iframe>
         </div>
