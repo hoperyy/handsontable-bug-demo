@@ -57169,27 +57169,15 @@ var keyMods = {
     ctrlKey: !1
 },
 Layout = {
-    localDraft: {},
-    editors: $H({}),
-    editors_order: ["html", "css", "js"],
-    reservedKeys: [["ctrlKey", 13, "run"], ["control", 13, "run"], ["ctrlKey", 38, "switchPrev"], ["ctrlKey", 40, "switchNext"], ["ctrlKey+shiftKey", 13, "loadDraft"], ["control+shift", 13, "loadDraft"], ["ctrlKey+shiftKey", 38, "toggleSidebar"], ["control+shift", 38, "toggleSidebar"], ["ctrlKey+shiftKey", 76, "showShortcutDialog"], ["control+shift", 76, "showShortcutDialog"], ["ctrlKey", 83, "saveAndReload"], ["control", 83, "saveAndReload"]],
-    isMobile: navigator.userAgent.match(/(iPhone|iPod|iPad)/) || navigator.userAgent.match(/BlackBerry/) || navigator.userAgent.match(/Android/),
     render: function() {
-        this.sidebar = new Sidebar({
-            DOM: "sidebar"
-        }),
-        window.addEvents({
-            resize: this.resize.bind(this),
-        }),
         this.resize(),
         this.createDragInstances();
     },
     findLayoutElements: function() {
         this.content = document.id("content"),
         this.columns = this.content.getChildren(".column"),
-        this.windows = this.content.getElements(".window"),
         this.handlers = $H({
-            vertical: this.content.getElementById("handler_vertical"),
+            vertical: document.id("content").getElementById("handler_vertical"),
             left: this.columns[0].getElement(".handler_horizontal"),
             right: this.columns[1].getElement(".handler_horizontal")
         })
@@ -57213,16 +57201,11 @@ Layout = {
     
     resize: function(e) {
         this.findLayoutElements();
-        this.handlers.vertical.setStyle("left", this.windows[0].getCoordinates(this.content).right),
-        this.handlers.left.setStyle("top", this.windows[0].getCoordinates(this.content).bottom),
-        this.handlers.right.setStyle("top", this.windows[2].getCoordinates(this.content).bottom);
+        this.handlers.vertical.setStyle("left", 656),
+        this.handlers.left.setStyle("top", 8),
+        this.handlers.right.setStyle("top", 447);
     },
-    refreshEditors: function() {
-        Object.each(this.editors,
-        function(e) {
-            e.editor.refresh()
-        })
-    }
+    
 };
 
 
