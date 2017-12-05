@@ -10304,176 +10304,29 @@ function(e) {
     }),
     e.defineMIME("text/plain", "null");
     var Fr = e.modeExtensions = {};
-    e.extendMode = function(e, t) {
-        Ai(t, Fr.hasOwnProperty(e) ? Fr[e] : Fr[e] = {})
-    },
-    e.defineExtension = function(t, n) {
-        e.prototype[t] = n
-    },
-    e.defineDocExtension = function(e, t) {
-        lo.prototype[e] = t
-    },
-    e.defineOption = en;
+    
     var qr = [];
-    e.defineInitHook = function(e) {
-        qr.push(e)
-    };
     var Kr = e.helpers = {};
-    e.registerHelper = function(t, n, i) {
-        Kr.hasOwnProperty(t) || (Kr[t] = e[t] = {
-            _global: []
-        }),
-        Kr[t][n] = i
-    },
-    e.registerGlobalHelper = function(t, n, i, r) {
-        e.registerHelper(t, n, r),
-        Kr[t]._global.push({
-            pred: i,
-            val: r
-        })
-    };
+    
     var Ur = e.copyState = function(e, t) {
-        if (!0 === t) return t;
-        if (e.copyState) return e.copyState(t);
-        var n = {};
-        for (var i in t) {
-            var r = t[i];
-            r instanceof Array && (r = r.concat([])),
-            n[i] = r
-        }
-        return n
+        
     },
     Vr = e.startState = function(e, t, n) {
         return ! e.startState || e.startState(t, n)
     };
-    e.innerMode = function(e, t) {
-        for (; e.innerMode;) {
-            var n = e.innerMode(t);
-            if (!n || n.mode == e) break;
-            t = n.state,
-            e = n.mode
-        }
-        return n || {
-            mode: e,
-            state: t
-        }
-    };
+   
     var Gr = e.commands = {
         
-        defaultTab: function(e) {
-            e.somethingSelected() ? e.indentSelection("add") : e.execCommand("insertTab")
-        },
-        transposeChars: function(e) {
-            
-        },
-        newlineAndIndent: function(e) {
-            
-        },
-        openLine: function(e) {
-
-        },
-        toggleOverwrite: function(e) {
-        }
     },
     Jr = e.keyMap = {};
     Jr.basic = {
-        Left: "goCharLeft",
-        Right: "goCharRight",
-        Up: "goLineUp",
-        Down: "goLineDown",
-        End: "goLineEnd",
-        Home: "goLineStartSmart",
-        PageUp: "goPageUp",
-        PageDown: "goPageDown",
-        Delete: "delCharAfter",
-        Backspace: "delCharBefore",
-        "Shift-Backspace": "delCharBefore",
-        Tab: "defaultTab",
-        "Shift-Tab": "indentAuto",
-        Enter: "newlineAndIndent",
-        Insert: "toggleOverwrite",
-        Esc: "singleSelection"
     },
     Jr.pcDefault = {
-        "Ctrl-A": "selectAll",
-        "Ctrl-D": "deleteLine",
-        "Ctrl-Z": "undo",
-        "Shift-Ctrl-Z": "redo",
-        "Ctrl-Y": "redo",
-        "Ctrl-Home": "goDocStart",
-        "Ctrl-End": "goDocEnd",
-        "Ctrl-Up": "goLineUp",
-        "Ctrl-Down": "goLineDown",
-        "Ctrl-Left": "goGroupLeft",
-        "Ctrl-Right": "goGroupRight",
-        "Alt-Left": "goLineStart",
-        "Alt-Right": "goLineEnd",
-        "Ctrl-Backspace": "delGroupBefore",
-        "Ctrl-Delete": "delGroupAfter",
-        "Ctrl-S": "save",
-        "Ctrl-F": "find",
-        "Ctrl-G": "findNext",
-        "Shift-Ctrl-G": "findPrev",
-        "Shift-Ctrl-F": "replace",
-        "Shift-Ctrl-R": "replaceAll",
-        "Ctrl-[": "indentLess",
-        "Ctrl-]": "indentMore",
-        "Ctrl-U": "undoSelection",
-        "Shift-Ctrl-U": "redoSelection",
-        "Alt-U": "redoSelection",
-        fallthrough: "basic"
     },
     Jr.emacsy = {
-        "Ctrl-F": "goCharRight",
-        "Ctrl-B": "goCharLeft",
-        "Ctrl-P": "goLineUp",
-        "Ctrl-N": "goLineDown",
-        "Alt-F": "goWordRight",
-        "Alt-B": "goWordLeft",
-        "Ctrl-A": "goLineStart",
-        "Ctrl-E": "goLineEnd",
-        "Ctrl-V": "goPageDown",
-        "Shift-Ctrl-V": "goPageUp",
-        "Ctrl-D": "delCharAfter",
-        "Ctrl-H": "delCharBefore",
-        "Alt-D": "delWordAfter",
-        "Alt-Backspace": "delWordBefore",
-        "Ctrl-K": "killLine",
-        "Ctrl-T": "transposeChars",
-        "Ctrl-O": "openLine"
+       
     },
     Jr.macDefault = {
-        "Cmd-A": "selectAll",
-        "Cmd-D": "deleteLine",
-        "Cmd-Z": "undo",
-        "Shift-Cmd-Z": "redo",
-        "Cmd-Y": "redo",
-        "Cmd-Home": "goDocStart",
-        "Cmd-Up": "goDocStart",
-        "Cmd-End": "goDocEnd",
-        "Cmd-Down": "goDocEnd",
-        "Alt-Left": "goGroupLeft",
-        "Alt-Right": "goGroupRight",
-        "Cmd-Left": "goLineLeft",
-        "Cmd-Right": "goLineRight",
-        "Alt-Backspace": "delGroupBefore",
-        "Ctrl-Alt-Backspace": "delGroupAfter",
-        "Alt-Delete": "delGroupAfter",
-        "Cmd-S": "save",
-        "Cmd-F": "find",
-        "Cmd-G": "findNext",
-        "Shift-Cmd-G": "findPrev",
-        "Cmd-Alt-F": "replace",
-        "Shift-Cmd-Alt-F": "replaceAll",
-        "Cmd-[": "indentLess",
-        "Cmd-]": "indentMore",
-        "Cmd-Backspace": "delWrappedLineLeft",
-        "Cmd-Delete": "delWrappedLineRight",
-        "Cmd-U": "undoSelection",
-        "Shift-Cmd-U": "redoSelection",
-        "Ctrl-Up": "goDocStart",
-        "Ctrl-Down": "goDocEnd",
-        fallthrough: ["basic", "emacsy"]
     },
     Jr.
 default = dr ? Jr.macDefault: Jr.pcDefault;
