@@ -21,34 +21,30 @@
 </head>
 
 <body>
-  <div id="result" style="z-index:10;position: absolute; left:120px; top:120px; right:120px; bottom:40px;">
+  <div style="z-index:10;position: absolute; left:20px; top:20px; right:20px; bottom:40px;">
     <iframe style="width:100%;height:100%;" frameborder="0" src="./dist/saved_resource.html"></iframe>
   </div>
   
-  <form method="post" id="show-result" target="result" action="http://fiddle.jshell.net/_display/">
-    <div id="content" style="height: 513px; opacity: 1;">
+    <div id="content" style="height: 513px; opacity: 1;margin-lef:190px;">
+      <div class="handler handler_horizontal" style="top: 129px;"></div>
 
-      <fieldset class="column left">
-        
-        <div class="handler handler_horizontal" style="top: 129px;"></div>
-        
-      </fieldset>
+      <div id="handler_vertical" style="z-index: 200;width: 8px;height: 100%;padding: 5px 0;cursor: col-resize;position: absolute;top: 0;left: 0;margin-left: -4px;"></div>
 
-      <div class="handler" id="handler_vertical" style="left: 546px;"></div>
-
-      <fieldset class="column right">
-        <div class="window top" id="panel_css" data-panel_type="css">
+      <fieldset>
+        <div class="window top">
           
-          <a href="http://jsfiddle.net/zhouwei/c4o2v7vc/1/#" class="windowLabel" data-panel="css">
-            <span class="label">CSS</span>
-          </a>
-          <div class="CodeMirror cm-s-default CodeMirror-wrap">
+
+          <div class="CodeMirror">
            
-            <div class="CodeMirror-scroll" tabindex="-1">
-              <div class="CodeMirror-sizer" style="margin-left: 35px; margin-bottom: 0px; border-right-width: 30px; min-height: 217px; padding-right: 0px; padding-bottom: 0px;">
+            <div style="overflow: scroll;height: 100%;">
+              <div style="min-height: 217px;">
                 <div style="position: relative; top: 0px;">
                   <div style="position: relative;">
-                    <pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">&lt;<span class="cm-tag">script</span> <span class="cm-tag">src</span>=<span class="cm-string">"https://docs.handsontable.com/pro/1.5.1/bower_components/handsontable-pro/dist/handsontable.full.min.js"</span>&gt;&lt;<span class="cm-operator">/</span><span class="cm-tag">script</span>&gt;</span></pre>
+                    <pre>
+                      <span>
+                       
+                      </span>
+                    </pre>
                   </div>
                 </div>
               </div>
@@ -56,11 +52,9 @@
             </div>
           </div>
         </div>
-        <div class="handler handler_horizontal" style="top: 129px;"></div>
+        <div style="top: 129px;z-index: 90;width: 100%;height: 8px;padding: 0 1px;cursor: row-resize;position: absolute;left: 0;margin-top: -4px;"></div>
         
       </fieldset>
     </div>
-
-  </form>
 </body>
 </html>
