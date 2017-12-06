@@ -11,12 +11,18 @@
   <link rel="stylesheet" type="text/css" href="./dist/_dist-editor.css">
 
   <script type="text/javascript">
-    
-    var mooshell;
+    var fiddleOptions = {
+    };
+    var csspath = "/css/",
+      jspath = "/js/",
+      codemirrorpath = "/codemirror/",
+      mooshell;
 
     window.addEvent('domready', function () {
       $extend(Layout, new Events());
-      // new MooShellEditor.CSS(document.id('id_code_css'));
+      mooshell = new MooShellActions({});
+      
+      new MooShellEditor.CSS(document.id('id_code_css'));
       Layout.render();
     });
   </script>
@@ -29,7 +35,7 @@
 
   <form id="show-result">
     
-    <div id="content">
+    <div id="content" style="height: 513px; opacity: 1;">
 
       <fieldset class="column left">
         <div class="window"></div>
@@ -45,10 +51,13 @@
 
 &lt;script src="https://docs.handsontable.com/pro/1.5.1/bower_components/handsontable-pro/dist/handsontable.full.min.js"&gt;&lt;/script&gt;
           </textarea>
-          
+          <a class="windowLabel">
+            <span class="label">CSS</span>
+          </a>
+
         </div>
         <div class="handler_horizontal"></div>
-        <div id="result" class="window" style="position: fixed; left: 40px; top: 40px; bottom: 40px; z-index: 4;">
+        <div id="result" class="window" style="position: fixed; left: 20px; top: 20px; bottom: 20px; z-index: 4;">
         <!-- <div id="result" class="window bottom" style="position: absolute; left: 10px; top: 0; z-index: 2;"> -->
           <iframe frameborder="0" src="./dist/index.html"></iframe>
         </div>

@@ -7,55 +7,63 @@
   <meta name="description" content="Test your JavaScript, CSS, HTML or CoffeeScript online with JSFiddle code editor.">
   <meta name="keywords" content="online javascript editor, testing javascript online, online ide, online code editor, html, css, coffeescript, scss online editor">
   <meta name="apple-touch-fullscreen" content="yes">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-    }
-    
-    #handler_vertical {
-      z-index: 200;
-      width: 1px;
-      height: 100%;
-      position: absolute;
-    }
-
-    .handler_horizontal {
-      z-index: 90;
-      width: 100%;
-      height: 1px;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-  </style>
+  <script type="text/javascript" src="./dist/_dist-editor.js"></script>
+  <link rel="stylesheet" type="text/css" href="./dist/_dist-editor.css">
 
   <script type="text/javascript">
-    document.addEventListener("DOMContentLoaded", function () {
-      document.getElementById("handler_vertical").addEventListener("touchstart", function() {})
+    var fiddleOptions = {
+    };
+    var csspath = "/css/",
+      jspath = "/js/",
+      codemirrorpath = "/codemirror/",
+      mooshell;
+
+    window.addEvent('domready', function () {
+      $extend(Layout, new Events());
+      mooshell = new MooShellActions({});
+
+      new MooShellEditor.CSS(document.id('id_code_css'));
+      Layout.render();
     });
   </script>
+
+
   <title>absolute</title>
 </head>
 
 <body>
-  <fieldset style="border:0;position: absolute;">
-    <div class="handler_horizontal"></div>
-  </fieldset>
 
-  <div id="handler_vertical"></div>
+  <form id="show-result">
 
-  <fieldset style="border:0;padding:0;">
-    <div style="position:absolute;">
-      <textarea style="opacity:0;">
-        Ugly Hack due to jsFiddle issue
-      </textarea>
+    <div id="content" style="height: 513px; opacity: 1;">
+
+      <fieldset class="column top">
+        <div class="window"></div>
+        <div class="handler_horizontal"></div>
+      </fieldset>
+
+      <div id="handler_vertical"></div>
+
+      <fieldset class="column">
+        <div class="window top">
+          <textarea id="id_code_css">
+            &lt;/style&gt;&lt;!-- Ugly Hack due to jsFiddle issue --&gt;
+          </textarea>
+          <a class="windowLabel">
+            <span class="label">CSS</span>
+          </a>
+
+        </div>
+        <div class="handler_horizontal" style="top: 129px;"></div>
+        <!-- <div id="result" class="window bottom" style="position: fixed; left: 10px; top: 0; z-index: 4;"> -->
+          <div id="result" class="window" style="position: absolute; left: 20px; top: 20px; bottom: 60px; z-index: 4;">
+          <iframe frameborder="0" src="./dist/index.html"></iframe>
+        </div>
+      </fieldset>
     </div>
-    <div class="handler_horizontal"></div>
-    <div style="width:100%; position: absolute; left: 0px; top: 0px; bottom: 20px; z-index: 4;">
-      <iframe style="width: 100%; height: 100%;" frameborder="0" src="./dist/index.html"></iframe>
-    </div>
-  </fieldset>
+
+  </form>
+
 </body>
 
 </html>
